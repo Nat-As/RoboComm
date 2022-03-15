@@ -1,5 +1,8 @@
 # RoboComm
-LoRaWAN Firmware for autonomous ships. This code consists of two major parts, a feather M0, RFM95 LoRaWAN located on a base station, and one located on the ship.
+LoRaWAN Firmware for autonomous ships. This code consists of two major parts, a feather M0, RFM95 LoRaWAN located on a base station, and one located on the ship. The pin definitions of the feather boards are shown below.
+<br>
+
+![pinouts](https://cdn-learn.adafruit.com/assets/assets/000/046/255/large1024/feather_Feather_M0_RFM95_v1.2-1.png)
 # Base Station
 The Base Station sends a packet over LoRaWAN that currently only contains one letter corresponding to an operation Mode. The letters are interpreted by the boat as follows:
 <br>
