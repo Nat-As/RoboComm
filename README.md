@@ -18,6 +18,9 @@ Pin D12 is used to check if the E-Stop button has been pressed. If the pin is se
 <br>
 
 # Ship
+The Feather M0 onboard the ship is flashed with everything in the [boat](https://github.com/Nat-As/RoboComm/tree/main/boat) directory. This directory will eventually have it's own readme consisting of the below sections and their elaborations.
+
+## Wiring
 Two control pins controll a red, green, and yellow light to show what mode of operation the ship is in. Digital Pins D11 and D12 are used for this as follows:
 
 <br>
@@ -30,3 +33,13 @@ Two control pins controll a red, green, and yellow light to show what mode of op
 
 <br>
 
+## Reporting
+The ship reports back to the base station a byte array across LoRa which can be modeled as a Binary Symmertic Channel (BSC). The byte array can be decoded as a UTF-8 sentence consisting of densely packed data. The data can be interpreted as follows:
+<br>
+
+|               | OpMode              | Link         | E-Stop        | GPS         | Jetson Link     | Jetson Data             | /n      |
+|---------------|---------------------|--------------|---------------|-------------|-----------------|-------------------------|---------|
+| Size (bytes)  | 1                   | 1            | 1             | 20          | 1               | X                       | 1       |
+| Byte Location | 0                   | 1            | 2             | 3-24        | 25              | 26-98                   | 99-100  |
+| Values        | A,S,M,E             | L,N          | T,F           | 123.45,,... | J,K             | X                       | \n      |
+| Purpose       | Main Operation Mode | Link To Base | Manual Button | GPS@10Hz    | TF Link to Jet. | Anything Sent From Jet. | EOL/EOF |
