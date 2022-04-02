@@ -43,3 +43,28 @@ The ship reports back to the base station a byte array across LoRa which can be 
 | Byte Location | 0                   | 1            | 2             | 3-24        | 25              | 26-98                   | 99-100  |
 | Values        | A,S,M,E             | L,N          | T,F           | 123.45,,... | J,K             | X                       | \n      |
 | Purpose       | Main Operation Mode | Link To Base | Manual Button | GPS@10Hz    | TF Link to Jet. | Anything Sent From Jet. | EOL/EOF |
+
+<br>
+
+An example message reads: ```ENF123.45,,12.34,,123.45...JSTANDBY...``` and prints a new line to the terminal. This data is interpreted from left to right meaning: 
+<br>
+
+E: E-Stop Mode is active.
+<br>
+
+N: The reason for this is there is no link to the base station.
+<br>
+
+F: The condition of the manual E-Stop button on board is False.
+<br>
+
+123.45,,...: The GPS coordinates updated every 10 seconds.
+<br>
+
+J: There is an active link to the Jetson.
+<br>
+
+STANDBY: The message 'STANDBY' was recieved from the Jetson.
+<br>
+
+/n: Newline. This is the end of the message.
